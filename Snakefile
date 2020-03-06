@@ -40,6 +40,17 @@ rule download:
         aws s3 cp s3://nextstrain-ncov-private/metadata.tsv data/
         """
 
+rule recode:
+    message: "Recoding. Will be done on ingest soon."
+    input:
+        metadata = rules.download.output.metadata
+    output:
+        metadata = "results/metadata_recoded.tsv"
+    shell:
+        """
+        python3 scripts/add_travel_history.py {input.metadata} {output.metadata}
+        """
+
 rule filter:
     message:
         """
@@ -212,12 +223,12 @@ rule traits:
         """
     input:
         tree = rules.refine.output.tree,
-        metadata = rules.download.output.metadata,
+        metadata = rules.recode.output.metadata,
         weights = files.weights
     output:
         node_data = "results/traits.json",
     params:
-        columns = "division",
+        columns = "division_exposure",
         sampling_bias_correction = 2.5
     shell:
         """
@@ -263,18 +274,31 @@ rule colors:
             --output {output.colors}
         """
 
+rule recode_lat_longs:
+    message: "Copying division lat/longs to division_exposure"
+    input:
+        lat_longs = files.lat_longs
+    output:
+        lat_longs = "results/lat_longs.tsv"
+    shell:
+        """
+        cp {input.lat_longs} {output.lat_longs} && \
+        grep 'division' {input.lat_longs} | sed 's/division/division_exposure/' >> {output.lat_longs}
+        """
+
+
 rule export:
     message: "Exporting data files for for auspice"
     input:
         tree = rules.refine.output.tree,
-        metadata = rules.download.output.metadata,
+        metadata = rules.recode.output.metadata,
         branch_lengths = rules.refine.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
-        # traits = rules.traits.output.node_data,
+        traits = rules.traits.output.node_data,
         auspice_config = files.auspice_config,
         colors = rules.colors.output.colors,
-        lat_longs = files.lat_longs,
+        lat_longs = rules.recode_lat_longs.output.lat_longs,
         description = files.description,
         clades = rules.clades.output.clade_data
     output:
@@ -284,7 +308,7 @@ rule export:
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
-            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.clades} \
+            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.traits} {input.clades} \
             --auspice-config {input.auspice_config} \
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \

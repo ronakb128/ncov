@@ -38,3 +38,9 @@ if __name__ == '__main__':
             for trait_value, color in zipped:
                 f.write(trait_name + "\t" + trait_value + "\t" + color + "\n")
             f.write("\n")
+
+            if trait_name == "division":
+                # cp this to division_exposure so we have consistent coloring
+                for trait_value, color in zipped:
+                    f.write(trait_name + "_exposure\t" + trait_value + "\t" + color + "\n")
+                f.write("\n")
