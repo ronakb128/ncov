@@ -18,6 +18,11 @@
       "type": "categorical"
     },
     {
+      "key": "division_exposure",
+      "title": "Admin division of suspected COVID-19 exposure",
+      "type": "categorical"
+    },
+    {
       "key": "host",
       "title": "Host",
       "type": "categorical"
@@ -57,12 +62,16 @@
   "geo_resolutions": [
     "location",
     "division",
-    "country"
+    "country",
+    {
+      "key": "division_exposure",
+      "title": "Admin division of suspected exposure"
+    }
   ],
   "display_defaults": {
     "color_by": "division",
     "distance_measure": "num_date",
-    "geo_resolution": "division",
+    "geo_resolution": "division_exposure",
     "map_triplicate": true,
     "branch_label": "none"
   },
