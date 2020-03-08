@@ -1,11 +1,11 @@
 ---
-title: Genomic analysis of COVID-19 spread. Situation report 2020-03-05.
+title: कोरोना वायरस के फैलाव का आनुवंशिक विश्लेषण। परिस्थिति रिपोर्ट ०५/०३/२०२०।
 authors: "Trevor Bedford, Richard Neher, James Hadfield, Emma Hodcroft, Misja Ilcisin, Nicola Müller"
 authorLinks: "https://nextstrain.org"
-affiliations: "Fred Hutch, Seattle, USA and Biozentrum, Basel, Switzerland"
-date: "2020 March 05"
+affiliations: "फ्रेड हच, सिएटल, यूएसए और बायोज़ेंट्रम, बेसल, स्विट्जरलैंड"
+date: "०५ मार्च २०२०"
 dataset: "https://nextstrain.org/ncov/2020-03-05"
-abstract: "This report uses publicly shared COVID-19 genomic data from GISAID and Genbank to estimate rates and patterns of viral epidemic spread. We plan to issue updated situation reports as new data is produced and shared. This website is optimized for display on desktop browsers."
+abstract: "यह रिपोर्ट GISAID और Genbank पर सार्वजनिक रूप से साझा किया गया कोरोना वायरस के आनुवंशिक डेटा से इस महामारी के दर और पैटर्न का आकलन कर रही है। नए डेटा आने पर हम इस परिस्थिति रिपोर्ट बदलाव करते रहे गे। यह वेबसाइट डेस्कटॉप ब्राउज़रों पर प्रदर्शन के लिए अनुकूलित है।"
 ---
 <!-- Translators: Only text after : in the above ^ needs to be translated -->
 <!-- Comment tags like these do not need to be translated, they are only to help you! -->
@@ -13,11 +13,11 @@ abstract: "This report uses publicly shared COVID-19 genomic data from GISAID an
 <!-- numbers can be tagged ilke this: 161</tag> - this is just for us to help find them to update! Just leave in the </tag> bit. -->
 
 <!-- This is left-side text -->
-# [Executive summary](https://nextstrain.org/ncov/2020-03-05)
+# [कार्यकारी सारांश](https://nextstrain.org/ncov/2020-03-05)
 
 <!-- This is right-side text -->
 ```auspiceMainDisplayMarkdown
-## Executive summary
+## कार्यकारी सारांश
 
 Using 169</tag> publicly shared COVID-19 genomes, we examined genetic diversity to characterize the spread of COVID-19 in different areas and infer the date of their common ancestor.
 
